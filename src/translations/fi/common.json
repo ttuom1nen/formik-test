@@ -1,0 +1,7 @@
+{
+    "firstName": "Etunimi",
+    "lastName": "Sukunimi",
+    "email": "Sähköposti",
+    "additionalInfo": "Lisätiedot",
+    "submit": "Tallenna"
+}

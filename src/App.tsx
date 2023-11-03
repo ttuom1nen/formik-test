@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Link,
+  Outlet,
+  RouterProvider,
+} from 'react-router-dom'
+import Main from './views/Main'
+import Swapi from './views/Swapi'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Root />}>
+        <Route index element={<Main />}></Route>
+        <Route path="/swapi" element={<Swapi />}></Route>
+      </Route>
+    )
+  )
+
+  return <RouterProvider router={router} />
 }
 
-export default App;
+const Root = () => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+        height: '100vh',
+      }}
+    >
+      <div style={{ padding: '2rem' }}>
+        <ul>
+          <li>
+            <Link to="/">Basic information</Link>
+          </li>
+          <li>
+            <Link to="/swapi">Swapi</Link>
+          </li>
+        </ul>
+      </div>
+
+      <div style={{ padding: '2rem', width: '100%' }}>
+        <Outlet />
+      </div>
+    </div>
+  )
+}
+
+export default App
