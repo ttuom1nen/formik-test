@@ -1,7 +1,17 @@
-import React from "react";
+import React from 'react'
+import useFetch from '../../hooks/useFetch'
 
 const Swapi = () => {
-  return <div>Swapi</div>;
-};
+  const { data, loading, error } = useFetch('https://swapi.dev/api/films/1/')
 
-export default Swapi;
+  if (loading) return <p>Loading...</p>
+
+  if (error) console.log(error)
+
+  if (data) console.log(data)
+
+  // TODO: Fix any
+  return <div>{(data as any)?.title}</div>
+}
+
+export default Swapi
