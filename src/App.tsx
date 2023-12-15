@@ -9,12 +9,14 @@ import {
 } from 'react-router-dom'
 import Main from './views/Main'
 import Swapi from './views/Swapi'
+import FeatureToggles from './views/FeatureToggles'
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index element={<Main />}></Route>
+        <Route path="/featuretoggles" element={<FeatureToggles />}></Route>
         <Route path="/swapi" element={<Swapi />}></Route>
       </Route>
     )
@@ -37,6 +39,9 @@ const Root = () => {
         <ul>
           <li>
             <Link to="/">Basic information</Link>
+          </li>
+          <li>
+            <Link to="/featuretoggles">Feature Toggles</Link>
           </li>
           <li>
             <Link to="/swapi">Swapi</Link>
