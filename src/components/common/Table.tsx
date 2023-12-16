@@ -4,6 +4,8 @@ import {
   flexRender,
 } from '@tanstack/react-table'
 import type { ColumnDef } from '@tanstack/react-table'
+import BootstrapTable from 'react-bootstrap/Table'
+import styles from './index.module.scss'
 
 interface ReactTableProps<T extends object> {
   data: T[]
@@ -17,16 +19,29 @@ export const Table = <T extends object>({
   const table = useReactTable({
     data,
     columns,
-    getCoreRowModel: getCoreRowModel(),
+    getCoreRowModel: getCoreRowModel()
   })
 
   return (
-    <table>
+    <BootstrapTable
+      striped
+      bordered
+      hover
+      responsive
+    >
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <th key={header.id}>
+              <th
+                {...{
+                  key: header.id,
+                  colSpan: header.colSpan,
+                  style: {
+                    width: header.getSize(),
+                  },
+                }}
+              >
                 {header.isPlaceholder
                   ? null
                   : flexRender(
@@ -42,13 +57,20 @@ export const Table = <T extends object>({
         {table.getRowModel().rows.map((row) => (
           <tr key={row.id}>
             {row.getVisibleCells().map((cell) => (
-              <td key={cell.id}>
+              <td
+                {...{
+                  key: cell.id,
+                  style: {
+                    width: cell.column.getSize(),
+                  },
+                }}
+              >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>
             ))}
           </tr>
         ))}
       </tbody>
-    </table>
+    </BootstrapTable>
   )
 }
