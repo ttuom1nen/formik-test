@@ -1,0 +1,9 @@
+{
+    "title": "Feature Toggles",
+    "tableHeaders": {
+        "name": "Name",
+        "description": "Description",
+        "lastToggled": "Last Toggled",
+        "toggledBy": "ToggledBy"
+    }
+}

@@ -8,9 +8,11 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 // for passing in lng and translations on init
 
 import common_en from './translations/en/common.json'
-import main_en from './translations/en/main.json'
 import common_fi from './translations/fi/common.json'
+import main_en from './translations/en/main.json'
 import main_fi from './translations/fi/main.json'
+import featureToggles_en from './translations/en/featureToggles.json'
+import featureToggles_fi from './translations/fi/featureToggles.json'
 
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
@@ -34,14 +36,17 @@ i18n
       en: {
         common: common_en,
         main: main_en,
+        featureToggles: featureToggles_en,
       },
       'en-US': {
         common: common_en,
         main: main_en,
+        featureToggles: featureToggles_en,
       },
       fi: {
         common: common_fi,
         main: main_fi,
+        featureToggles: featureToggles_fi,
       },
     },
   })

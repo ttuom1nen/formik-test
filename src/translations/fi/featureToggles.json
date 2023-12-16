@@ -1,0 +1,9 @@
+{
+    "title": "Ominaisuus-kytkimet",
+    "tableHeaders": {
+        "name": "fi_Name",
+        "description": "fi_Description",
+        "lastToggled": "fi_Last Toggled",
+        "toggledBy": "fi_ToggledBy"
+    }
+}
