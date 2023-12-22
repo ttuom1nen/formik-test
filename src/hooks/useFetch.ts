@@ -8,17 +8,35 @@ const useFetch = (url: string) => {
 
   useEffect(() => {
     setLoading(true)
-    axios
-      .get(url)
+
+    axios({
+      url,
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then((response) => {
         setData(response.data)
       })
-      .catch((e) => {
-        setError(e)
+      .catch((err) => {
+        setError(err)
       })
       .finally(() => {
         setLoading(false)
       })
+
+    // axios
+    //   .get(url)
+    //   .then((response) => {
+    //     setData(response.data)
+    //   })
+    //   .catch((e) => {
+    //     setError(e)
+    //   })
+    //   .finally(() => {
+    //     setLoading(false)
+    //   })
   }, [url])
 
   return { data, loading, error }

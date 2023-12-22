@@ -8,6 +8,7 @@ import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import dayjs from 'dayjs'
 import { FeatureToggle } from './types'
+import useFetch from '../../hooks/useFetch'
 
 const mockData: FeatureToggle[] = [
   {
@@ -49,6 +50,12 @@ const mockData: FeatureToggle[] = [
 ]
 
 const FeatureToggles = () => {
+  const { data, loading, error } = useFetch('http://localhost:3008/toggles')
+
+  if (error) console.log(error)
+
+  if (data) console.log(data)
+  
   const { t } = useTranslation(['main', 'common'])
 
   const cols = useMemo<ColumnDef<FeatureToggle>[]>(
@@ -97,6 +104,8 @@ const FeatureToggles = () => {
     ],
     []
   )
+
+  if (loading) return <p>Loading...</p>
 
   return (
     <Formik
