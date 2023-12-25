@@ -2,7 +2,7 @@ import React from 'react'
 import useFetch from '../../hooks/useFetch'
 
 const Swapi = () => {
-  const { data, loading, error } = useFetch('https://swapi.dev/api/films/1/')
+  const { data, loading, error } = useFetch('https://swapi.dev/api/films/1/', 'get')
 
   if (loading) return <p>Loading...</p>
 

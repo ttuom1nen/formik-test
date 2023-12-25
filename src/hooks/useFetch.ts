@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const useFetch = (url: string) => {
+const useFetch = (url: string, method: string) => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -11,7 +11,7 @@ const useFetch = (url: string) => {
 
     axios({
       url,
-      method: 'get',
+      method,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -25,19 +25,7 @@ const useFetch = (url: string) => {
       .finally(() => {
         setLoading(false)
       })
-
-    // axios
-    //   .get(url)
-    //   .then((response) => {
-    //     setData(response.data)
-    //   })
-    //   .catch((e) => {
-    //     setError(e)
-    //   })
-    //   .finally(() => {
-    //     setLoading(false)
-    //   })
-  }, [url])
+  }, [method, url])
 
   return { data, loading, error }
 }

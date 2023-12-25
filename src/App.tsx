@@ -16,7 +16,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index element={<Main />}></Route>
-        <Route path="/featuretoggles" element={<FeatureToggles />}></Route>
+        <Route path="/toggles" element={<FeatureToggles />}></Route>
         <Route path="/swapi" element={<Swapi />}></Route>
       </Route>
     )
@@ -41,7 +41,7 @@ const Root = () => {
             <Link to="/">Basic information</Link>
           </li>
           <li>
-            <Link to="/featuretoggles">Feature Toggles</Link>
+            <Link to="/toggles">Feature Toggles</Link>
           </li>
           <li>
             <Link to="/swapi">Swapi</Link>
