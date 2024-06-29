@@ -2,17 +2,17 @@ import React, { useMemo } from 'react'
 import type { ColumnDef } from '@tanstack/react-table'
 import { Table } from '../../components/common/Table'
 import FormSwitch from '../../components/common/FormSwitch'
-import { Form, Formik } from 'formik'
 import Tile from '../../components/Tile'
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { FeatureToggle } from './types'
 import useFetch from '../../hooks/useFetch'
+import ErrorMessage from '../../components/common/ErrorMessage'
+import { AxiosError } from 'axios'
+import { Form, Formik } from 'formik'
 
 const FeatureToggles = () => {
-  const { data, loading, error } = useFetch('http://localhost:3008/toggles', 'get')
-
-  if (error) console.log(error)
+  const { data, loading, error }: { data: any, loading: boolean, error: AxiosError | null } = useFetch('http://localhost:3008/toggles', 'get')
 
   const { t } = useTranslation(['main', 'common'])
 
@@ -64,6 +64,8 @@ const FeatureToggles = () => {
   )
 
   if (loading) return <p>Loading...</p>
+
+  if (error) return <ErrorMessage text={(error as AxiosError).message} />
 
   if (!data) return <p>No data</p>
 
