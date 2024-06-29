@@ -16,61 +16,62 @@ export const Table = <T extends object>({
   data,
   columns,
 }: ReactTableProps<T>) => {
+
   const table = useReactTable({
-    data,
+    data: data ?? [],
     columns,
     getCoreRowModel: getCoreRowModel()
   })
 
-  return (
-    <BootstrapTable
-      striped
-      bordered
-      hover
-      responsive
-    >
-      <thead>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id}>
-            {headerGroup.headers.map((header) => (
-              <th
-                {...{
-                  key: header.id,
-                  colSpan: header.colSpan,
-                  style: {
-                    width: header.getSize(),
-                  },
-                }}
-              >
-                {header.isPlaceholder
-                  ? null
-                  : flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody>
-        {table.getRowModel().rows.map((row) => (
-          <tr key={row.id}>
-            {row.getVisibleCells().map((cell) => (
-              <td
-                {...{
-                  key: cell.id,
-                  style: {
-                    width: cell.column.getSize(),
-                  },
-                }}
-              >
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </BootstrapTable>
-  )
+return (
+  <BootstrapTable
+    striped
+    bordered
+    hover
+    responsive
+  >
+    <thead>
+      {table.getHeaderGroups().map((headerGroup) => (
+        <tr key={headerGroup.id}>
+          {headerGroup.headers.map((header) => (
+            <th
+              {...{
+                key: header.id,
+                colSpan: header.colSpan,
+                style: {
+                  width: header.getSize(),
+                },
+              }}
+            >
+              {header.isPlaceholder
+                ? null
+                : flexRender(
+                  header.column.columnDef.header,
+                  header.getContext()
+                )}
+            </th>
+          ))}
+        </tr>
+      ))}
+    </thead>
+    <tbody>
+      {table.getRowModel().rows.map((row) => (
+        <tr key={row.id}>
+          {row.getVisibleCells().map((cell) => (
+            <td
+              {...{
+                key: cell.id,
+                style: {
+                  width: cell.column.getSize(),
+                },
+              }}
+            >
+              {flexRender(cell.column.columnDef.cell, cell.getContext())}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </BootstrapTable>
+)
 }

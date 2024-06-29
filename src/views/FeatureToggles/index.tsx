@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import type { ColumnDef } from '@tanstack/react-table'
 import { Table } from '../../components/common/Table'
 import FormSwitch from '../../components/common/FormSwitch'
@@ -7,14 +7,21 @@ import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { FeatureToggle } from './types'
 import useFetch from '../../hooks/useFetch'
-import ErrorMessage from '../../components/common/ErrorMessage'
 import { AxiosError } from 'axios'
 import { Form, Formik } from 'formik'
+import Alert from 'react-bootstrap/Alert';
 
 const FeatureToggles = () => {
   const { data, loading, error }: { data: any, loading: boolean, error: AxiosError | null } = useFetch('http://localhost:3008/toggles', 'get')
 
   const { t } = useTranslation(['main', 'common'])
+
+  const [disabled, setDisabled] = useState<boolean>(true)
+
+  useEffect(() => {
+    setDisabled(loading || !!error)
+  }, [loading, error])
+
 
   const cols = useMemo<ColumnDef<FeatureToggle>[]>(
     () => [
@@ -63,12 +70,6 @@ const FeatureToggles = () => {
     []
   )
 
-  if (loading) return <p>Loading...</p>
-
-  if (error) return <ErrorMessage text={(error as AxiosError).message} />
-
-  if (!data) return <p>No data</p>
-
   return (
     <Formik
       initialValues={{
@@ -80,33 +81,41 @@ const FeatureToggles = () => {
       }}
     >
       {(props) => (
-        <Form>
-          <Tile title={t('title', { ns: 'featureToggles' })}>
-            <Table data={data} columns={cols} />
-          </Tile>
-          <div
-            style={{
-              width: '100%',
-              padding: '2rem',
-              position: 'fixed',
-              bottom: 0,
-            }}
-          >
-            <Button variant="primary" type="submit">
-              {t('submit', { ns: 'common' })}
-            </Button>
-            <Button
-              variant="secondary"
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault()
-                console.log(props)
+        <>
+          {error &&
+            <Alert variant={'danger'}>
+              {(error as AxiosError).message}
+            </Alert>
+          }
+          <Form>
+            <Tile title={t('title', { ns: 'featureToggles' })} loading={loading}>
+              <Table data={data} columns={cols} />
+            </Tile>
+            <div
+              style={{
+                width: '100%',
+                padding: '2rem',
+                position: 'fixed',
+                bottom: 0,
               }}
             >
-              debug
-            </Button>
-          </div>
-        </Form>
+              <Button variant="primary" type="submit" disabled={disabled}>
+                {t('submit', { ns: 'common' })}
+              </Button>
+              <Button
+                variant="secondary"
+                type="submit"
+                disabled={disabled}
+                onClick={(e) => {
+                  e.preventDefault()
+                  console.log(props)
+                }}
+              >
+                debug
+              </Button>
+            </div>
+          </Form>
+        </>
       )}
     </Formik>
   )
