@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
-const useFetch = (url: string, method: string) => {
-  const [data, setData] = useState(null)
+const useFetch = <T>(url: string, method: string) => {
+  const [data, setData] = useState<T | null>(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<AxiosError | null>(null)
 
   useEffect(() => {
     setLoading(true)

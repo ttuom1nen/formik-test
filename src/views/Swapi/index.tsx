@@ -1,17 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
+import Tile from '../../components/Tile'
+import { Table } from '../../components/common/Table'
+import { useTranslation } from 'react-i18next'
+import { Alert } from 'react-bootstrap'
+import { AxiosError } from 'axios'
+import { FilmData } from './types'
 
 const Swapi = () => {
-  const { data, loading, error } = useFetch('https://swapi.dev/api/films/1/', 'get')
+  const { data, loading, error } = useFetch<FilmData>('https://swapi.dev/api/films/1/', 'get')
 
-  if (loading) return <p>Loading...</p>
+  const { t } = useTranslation(['main', 'common'])
 
-  if (error) console.log(error)
+  const [disabled, setDisabled] = useState<boolean>(true)
 
-  if (data) console.log(data)
+  useEffect(() => {
+    setDisabled(loading || !!error)
+  }, [loading, error])
 
-  // TODO: Fix any
-  return <div>{(data as any)?.title}</div>
+  return (
+    <>
+      {error &&
+        <Alert variant={'danger'}>
+          {(error as AxiosError).message}
+        </Alert>
+      }
+      <Tile title={t('title', { ns: 'Swapi' })} loading={loading}>
+        {/* <Table data={data} columns={cols} /> */}
+        {data && data.title}
+      </Tile>
+    </>
+  )
 }
 
 export default Swapi

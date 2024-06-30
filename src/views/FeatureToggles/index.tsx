@@ -12,7 +12,7 @@ import { Form, Formik } from 'formik'
 import Alert from 'react-bootstrap/Alert';
 
 const FeatureToggles = () => {
-  const { data, loading, error }: { data: any, loading: boolean, error: AxiosError | null } = useFetch('http://localhost:3008/toggles', 'get')
+  const { data, loading, error } = useFetch<any>('http://localhost:3008/toggles', 'get')
 
   const { t } = useTranslation(['main', 'common'])
 
