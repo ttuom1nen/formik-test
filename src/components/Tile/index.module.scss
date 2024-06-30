@@ -2,7 +2,12 @@
   border-radius: 6px;
   padding: 2rem;
   border: 1px solid silver;
-  h2 {
+  
+  .titleContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     margin-bottom: 2rem;
   }
+
 }
