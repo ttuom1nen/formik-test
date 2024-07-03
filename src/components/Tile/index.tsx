@@ -11,7 +11,7 @@ type Props = {
 const Tile = ({ title, loading, children }: Props) => {
   return (
     <div className={styles.tile}>
-      <div className={styles.titleContainer}>{title ? <h2>{title}</h2> : null}
+      <div className={styles.titleContainer}>{title ? <h3>{title}</h3> : null}
         {loading &&
           <Spinner animation="border" role="status" variant="primary">
             <span className="visually-hidden">Loading...</span>

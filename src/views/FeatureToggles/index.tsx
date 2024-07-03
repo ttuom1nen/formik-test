@@ -10,6 +10,8 @@ import useFetch from '../../hooks/useFetch'
 import { AxiosError } from 'axios'
 import { Form, Formik } from 'formik'
 import Alert from 'react-bootstrap/Alert';
+import ViewHeader from '../../components/ViewHeader'
+import FormFooter from '../../components/common/FormFooter'
 
 const FeatureToggles = () => {
   const { data, loading, error } = useFetch<any>('http://localhost:3008/toggles', 'get')
@@ -82,6 +84,7 @@ const FeatureToggles = () => {
     >
       {(props) => (
         <>
+          <ViewHeader text={t('title', { ns: 'featureToggles' })} />
           {error &&
             <Alert variant={'danger'}>
               {(error as AxiosError).message}
@@ -91,14 +94,7 @@ const FeatureToggles = () => {
             <Tile title={t('title', { ns: 'featureToggles' })} loading={loading}>
               <Table data={data} columns={cols} />
             </Tile>
-            <div
-              style={{
-                width: '100%',
-                padding: '2rem',
-                position: 'fixed',
-                bottom: 0,
-              }}
-            >
+            <FormFooter>
               <Button variant="primary" type="submit" disabled={disabled}>
                 {t('submit', { ns: 'common' })}
               </Button>
@@ -113,7 +109,7 @@ const FeatureToggles = () => {
               >
                 debug
               </Button>
-            </div>
+            </FormFooter>
           </Form>
         </>
       )}
