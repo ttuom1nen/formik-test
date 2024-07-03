@@ -1,0 +1,24 @@
+.sidepanel {
+    width: 30%;
+    min-width: 160px;
+    max-width: 220px;
+    padding: 2rem;
+    border-right: 1px solid silver;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 2rem;
+
+            a {
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+
+}
+

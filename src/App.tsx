@@ -10,6 +10,7 @@ import {
 import Main from './views/Main'
 import Swapi from './views/Swapi'
 import FeatureToggles from './views/FeatureToggles'
+import Sidepanel from './components/Sidepanel'
 
 function App() {
   const router = createBrowserRouter(
@@ -35,20 +36,7 @@ const Root = () => {
         height: '100vh',
       }}
     >
-      <div style={{ padding: '2rem' }}>
-        <ul>
-          <li>
-            <Link to="/">Basic information</Link>
-          </li>
-          <li>
-            <Link to="/toggles">Feature Toggles</Link>
-          </li>
-          <li>
-            <Link to="/swapi">Swapi</Link>
-          </li>
-        </ul>
-      </div>
-
+      <Sidepanel />
       <div style={{ padding: '2rem', width: '100%' }}>
         <Outlet />
       </div>
