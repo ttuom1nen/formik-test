@@ -1,0 +1,20 @@
+@import './../../../design-tokens/breakpoints.scss';
+
+.formFooter {
+    width: calc(100% - 320px);
+    padding: 2rem;
+    position: fixed;
+    background: gray;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: 320px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    @include break(xs) {
+        width: 100%;
+        margin-left: unset;
+    }
+}

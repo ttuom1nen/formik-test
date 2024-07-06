@@ -101,7 +101,6 @@ const FeatureToggles = () => {
               <Button
                 variant="secondary"
                 type="submit"
-                disabled={disabled}
                 onClick={(e) => {
                   e.preventDefault()
                   console.log(props)

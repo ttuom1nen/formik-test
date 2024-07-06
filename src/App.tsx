@@ -11,6 +11,8 @@ import Main from './views/Main'
 import Swapi from './views/Swapi'
 import FeatureToggles from './views/FeatureToggles'
 import Sidepanel from './components/Sidepanel'
+import styles from './app.module.scss'
+
 
 function App() {
   const router = createBrowserRouter(
@@ -28,16 +30,11 @@ function App() {
 
 const Root = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100%',
-        height: '100vh',
-      }}
-    >
-      <Sidepanel />
-      <div style={{ padding: '2rem', width: '100%' }}>
+    <div className={styles.siteFrame}>
+      <div className={styles.sidePanelContainer}>
+        <Sidepanel />
+      </div>
+      <div className={styles.outletContainer}>
         <Outlet />
       </div>
     </div>
