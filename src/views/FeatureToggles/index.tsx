@@ -14,7 +14,7 @@ import ViewHeader from '../../components/ViewHeader'
 import FormFooter from '../../components/common/FormFooter'
 
 const FeatureToggles = () => {
-  const { data, loading, error } = useFetch<any>('http://localhost:3008/toggles', 'get')
+  const { data, loading, error } = useFetch<FeatureToggle[]>('http://localhost:3008/toggles', 'get')
 
   const { t } = useTranslation(['main', 'common'])
 
@@ -23,7 +23,6 @@ const FeatureToggles = () => {
   useEffect(() => {
     setDisabled(loading || !!error)
   }, [loading, error])
-
 
   const cols = useMemo<ColumnDef<FeatureToggle>[]>(
     () => [
@@ -41,7 +40,7 @@ const FeatureToggles = () => {
       {
         header: t('tableHeaders.name', { ns: 'featureToggles' }),
         cell: (row) => row.renderValue(),
-        accessorKey: 'label',
+        accessorKey: 'value',
         enableResizing: true,
       },
       {
@@ -63,7 +62,7 @@ const FeatureToggles = () => {
       {
         header: t('tableHeaders.toggledBy', { ns: 'featureToggles' }),
         cell: (row) => row.renderValue(),
-        accessorKey: 'updated_at',
+        accessorKey: 'modified_at',
         size: 175,
         minSize: 175,
         maxSize: 200,
@@ -84,15 +83,15 @@ const FeatureToggles = () => {
     >
       {(props) => (
         <>
-          <ViewHeader text={t('title', { ns: 'featureToggles' })} />
+          <ViewHeader text={t('title', { ns: 'featureToggles' })} loading={loading}/>
           {error &&
             <Alert variant={'danger'}>
               {(error as AxiosError).message}
             </Alert>
           }
           <Form>
-            <Tile title={t('title', { ns: 'featureToggles' })} loading={loading}>
-              <Table data={data} columns={cols} />
+            <Tile>
+              <Table data={data ?? []} columns={cols} />
             </Tile>
             <FormFooter>
               <Button variant="primary" type="submit" disabled={disabled}>

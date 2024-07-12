@@ -4,10 +4,9 @@ export interface Toggle {
 }
 
 export interface FeatureToggle extends Toggle {
-  label: string;
+  value: string;
   description: string;
   created_at?: Date | null;
   updated_at?: Date | null;
-  // toggle_date: string | null;
-  // toggled_by: string | null;
+  toggled_by?: string | null;
 }
