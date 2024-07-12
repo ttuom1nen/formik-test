@@ -1,4 +1,6 @@
+@import './../../../design-tokens/colors';
+
 .extraLabel {
-    font-size: 0.8rem;
-    color: gray;
+    font-size: 1.2rem;
+    color: $purple_dev;
 }

@@ -12,6 +12,9 @@ const Sidepanel = () => {
                 <Link to="/toggles">Feature Toggles</Link>
             </li>
             <li>
+                <Link to="/migrations">DB Migrations</Link>
+            </li>
+            <li>
                 <Link to="/swapi">Swapi</Link>
             </li>
         </ul>

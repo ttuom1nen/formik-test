@@ -12,6 +12,7 @@ import Swapi from './views/Swapi'
 import FeatureToggles from './views/FeatureToggles'
 import Sidepanel from './components/Sidepanel'
 import styles from './app.module.scss'
+import Migrations from './views/Migrations'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route index element={<Main />}></Route>
         <Route path="/toggles" element={<FeatureToggles />}></Route>
         <Route path="/swapi" element={<Swapi />}></Route>
+        <Route path="/migrations" element={<Migrations />}></Route>
       </Route>
     )
   )
