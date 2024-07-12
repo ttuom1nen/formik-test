@@ -1,0 +1,9 @@
+{
+    "title": "Database Migrations",
+    "tableHeaders": {
+        "id": "Id",
+        "name": "Name",
+        "batch": "Batch",
+        "migration_time": "Migration time"
+    }
+}

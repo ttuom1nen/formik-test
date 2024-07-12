@@ -1,0 +1,9 @@
+{
+    "title": "Tietokantamigraatiot",
+    "tableHeaders": {
+        "id": "Id",
+        "name": "Nimi",
+        "batch": "Erä",
+        "migration_time": "Migraatioaika"
+    }
+}
