@@ -6,16 +6,13 @@ const Sidepanel = () => {
     return (<div className={styles.sidepanel}>
         <ul>
             <li>
-                <Link to="/">Basic information</Link>
+                <Link to="/">Users</Link>
             </li>
             <li>
                 <Link to="/toggles">Feature Toggles</Link>
             </li>
             <li>
                 <Link to="/migrations">DB Migrations</Link>
-            </li>
-            <li>
-                <Link to="/swapi">Swapi</Link>
             </li>
         </ul>
     </div>)

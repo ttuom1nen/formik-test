@@ -9,8 +9,8 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 
 import common_en from './translations/en/common.json'
 import common_fi from './translations/fi/common.json'
-import main_en from './translations/en/main.json'
-import main_fi from './translations/fi/main.json'
+import users_en from './translations/en/users.json'
+import users_fi from './translations/fi/users.json'
 import featureToggles_en from './translations/en/featureToggles.json'
 import featureToggles_fi from './translations/fi/featureToggles.json'
 import migrations_en from './translations/en/migrations.json'
@@ -37,18 +37,18 @@ i18n
     resources: {
       en: {
         common: common_en,
-        main: main_en,
+        users: users_en,
         featureToggles: featureToggles_en,
       },
       'en-US': {
         common: common_en,
-        main: main_en,
+        users: users_en,
         featureToggles: featureToggles_en,
         migrations: migrations_en
       },
       fi: {
         common: common_fi,
-        main: main_fi,
+        users: users_fi,
         featureToggles: featureToggles_fi,
         migrations: migrations_fi
       },
