@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Field, FieldAttributes } from 'formik'
+import { MainContext } from '../../MainContext'
+import ExtraLabel from './helpers/ExtraLabel'
 
 const FormSwitch = (props: FieldAttributes<any>) => {
     const { type, ...restProps } = props
-
+    const { user } = useContext(MainContext)
+    
     return (
         <div className="form-check form-switch">
             <Field
@@ -20,6 +23,7 @@ const FormSwitch = (props: FieldAttributes<any>) => {
                     {props.label}
                 </label>
             )}
+            {user.userGroups.includes("dev") ? <ExtraLabel text={props?.name}/> : null }
         </div>
     )
 }
