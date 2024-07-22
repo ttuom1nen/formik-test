@@ -11,13 +11,15 @@ import FeatureToggles from './views/FeatureToggles'
 import Sidepanel from './components/Sidepanel'
 import styles from './app.module.scss'
 import Migrations from './views/Migrations'
+import Landing from './views/Landing'
 
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
-        <Route index element={<Users />}></Route>
+        <Route index element={<Landing />}></Route>
+        <Route path="/users" element={<Users />}></Route>
         <Route path="/toggles" element={<FeatureToggles />}></Route>
         <Route path="/migrations" element={<Migrations />}></Route>
       </Route>
