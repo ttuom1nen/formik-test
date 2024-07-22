@@ -16,12 +16,19 @@
                 display: block;
                 align-content: center;
                 text-decoration: none;
-                color: black;
                 height: 40px;
+            }
+
+            :not(.active) {
+                color: black;
 
                 &:hover {
                     color: $primary;
                 }
+            }
+
+            .active {
+                color: $primary;
             }
 
         }
