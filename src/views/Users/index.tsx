@@ -11,7 +11,6 @@ import { User } from './types'
 import { ColumnDef } from '@tanstack/react-table'
 import { Table } from '../../components/common/Table'
 import axios from 'axios'
-import AddUser from './AddUser'
 
 const Users = () => {
   const { t } = useTranslation(['users', 'common'])
@@ -91,7 +90,6 @@ const Users = () => {
             <Tile title={t('basicInfo.title', { ns: 'users' })} loading={loading}>
               <Table data={data ?? []} columns={cols} />
             </Tile>
-            <AddUser />
             <FormFooter>
               <Button variant="primary" type="submit" disabled={false}>
                 {t('submit', { ns: 'common' })}

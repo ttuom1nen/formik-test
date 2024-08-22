@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 import Users from './views/Users'
+import UserInfo from './views/Users/UserInfo'
 import FeatureToggles from './views/FeatureToggles'
 import Sidepanel from './components/Sidepanel'
 import styles from './app.module.scss'
@@ -19,7 +20,9 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index element={<Landing />}></Route>
-        <Route path="/users" element={<Users />}></Route>
+        <Route path="/users" element={<Users />}>
+          <Route path=":id" element={<UserInfo />}></Route>
+        </Route>
         <Route path="/toggles" element={<FeatureToggles />}></Route>
         <Route path="/migrations" element={<Migrations />}></Route>
       </Route>

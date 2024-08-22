@@ -1,11 +1,11 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
-import FormField from '../../components/common/FormField'
-import FormSwitch from '../../components/common/FormSwitch'
+import FormField from '../../../components/common/FormField'
+import FormSwitch from '../../../components/common/FormSwitch'
 import AdditionalInfo from './AdditionalInfo'
 import { useTranslation } from 'react-i18next'
 
-const AddUser = () => {
+const UserInfo = () => {
     const { t } = useTranslation(['users', 'common'])
     
     return (
@@ -48,4 +48,4 @@ const AddUser = () => {
     )
 }
 
-export default AddUser
+export default UserInfo

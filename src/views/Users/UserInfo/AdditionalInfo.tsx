@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import FormField from "../../components/common/FormField";
+import FormField from "../../../components/common/FormField";
 
 const AdditionalInfo = () => {
   const { values } = useFormikContext();
