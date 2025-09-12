@@ -30,7 +30,7 @@ const FeatureToggles = () => {
         header: '',
         cell: ({ row }) => {
           const { id, index } = row as any
-          return <FormSwitch id={id} name={`featureToggles[${index}].isOn`} />
+          return <FormSwitch id={id} name={`featureToggles[${index}].is_on`} />
         },
         accessorKey: 'toggle',
         size: 80,
