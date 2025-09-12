@@ -5,8 +5,8 @@ import ExtraLabel from './helpers/ExtraLabel'
 
 const FormSwitch = (props: FieldAttributes<any>) => {
     const { type, ...restProps } = props
-    const { user } = useContext(MainContext)
-    
+    const { debug } = useContext(MainContext)
+
     return (
         <div className="form-check form-switch">
             <Field
@@ -23,7 +23,7 @@ const FormSwitch = (props: FieldAttributes<any>) => {
                     {props.label}
                 </label>
             )}
-            {user.userGroups.includes("dev") ? <ExtraLabel text={props?.name}/> : null }
+            {debug ? <ExtraLabel text={props?.name}/> : null }
         </div>
     )
 }

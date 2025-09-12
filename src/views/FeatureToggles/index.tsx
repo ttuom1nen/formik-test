@@ -78,7 +78,7 @@ const FeatureToggles = () => {
       }}
       onSubmit={async (values) => {
         await new Promise((r) => setTimeout(r, 500))
-        alert(JSON.stringify(values, null, 2))
+        console.log(JSON.stringify(values, null, 2))
       }}
     >
       {(props) => (

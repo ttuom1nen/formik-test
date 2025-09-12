@@ -9,7 +9,7 @@ const CustomField = ({ field, props }: any) => {
 }
 
 const FormField = (props: FieldAttributes<any>) => {
-    const { user } = useContext(MainContext)
+    const { debug } = useContext(MainContext)
 
     return (
         <div style={{ margin: '1rem 0 1rem 0' }}>
@@ -17,7 +17,7 @@ const FormField = (props: FieldAttributes<any>) => {
                 <Form.Label htmlFor={props?.id}>{props?.label}</Form.Label>
             )}
             <Field id={props?.id} name={props?.name} component={CustomField} />
-            {user.userGroups.includes("dev") ? <ExtraLabel text={props?.name}/> : null }
+            {debug ? <ExtraLabel text={props?.name}/> : null }
             <ErrorMessage name={props?.name} />
         </div>
     )

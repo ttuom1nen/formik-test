@@ -1,3 +1,4 @@
+import { debug } from "console";
 import { createContext } from "react";
 
 export const MainContext = createContext(
@@ -7,5 +8,6 @@ export const MainContext = createContext(
             name: "Seppo",
             email: "seppo@testi.com",
             userGroups: ["admin", "dev"]
-        }
+        },
+        debug: false
     })
