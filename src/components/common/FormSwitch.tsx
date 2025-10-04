@@ -13,6 +13,16 @@ const FormSwitch = (props: FieldAttributes<any>) => {
                 type="checkbox"
                 {...restProps}
                 className="form-check-input"
+                role="switch"
+                aria-checked="false"
+                aria-labelledby={restProps?.id ?? ''}
+                aria-describedby={restProps?.id ?? ''}
+                onClick={(e: any) => {
+                    e.stopPropagation()
+                    if (restProps.onClick) {
+                        restProps.onClick(restProps?.id ?? '')
+                    }
+                }}
             />
             {restProps.label && (
                 <label

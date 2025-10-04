@@ -12,6 +12,7 @@ import { Form, Formik } from 'formik'
 import Alert from 'react-bootstrap/Alert';
 import ViewHeader from '../../components/ViewHeader'
 import FormFooter from '../../components/common/FormFooter'
+import { SubmitToggleState } from './services'
 
 const FeatureToggles = () => {
   const { data, loading, error } = useFetch<FeatureToggle[]>('http://localhost:3008/toggles', 'get')
@@ -28,9 +29,10 @@ const FeatureToggles = () => {
     () => [
       {
         header: '',
-        cell: ({ row }) => {
-          const { id, index } = row as any
-          return <FormSwitch id={id} name={`featureToggles[${index}].is_on`} />
+        cell: ({ row, table }) => {
+          const { id, index, original } = row as any
+          const isOn = original.is_on as boolean
+          return <FormSwitch id={id} name={`featureToggles[${index}].is_on`} onClick={() => SubmitToggleState(id, isOn)} />
         },
         accessorKey: 'toggle',
         size: 80,
@@ -71,6 +73,8 @@ const FeatureToggles = () => {
     []
   )
 
+  if (!data) return null
+
   return (
     <Formik
       initialValues={{
@@ -83,7 +87,7 @@ const FeatureToggles = () => {
     >
       {(props) => (
         <>
-          <ViewHeader text={t('title', { ns: 'featureToggles' })} loading={loading}/>
+          <ViewHeader text={t('title', { ns: 'featureToggles' })} loading={loading} />
           {error &&
             <Alert variant={'danger'}>
               {(error as AxiosError).message}
@@ -91,7 +95,7 @@ const FeatureToggles = () => {
           }
           <Form>
             <Tile>
-              <Table data={data ?? []} columns={cols} />
+              <Table data={data ?? []} columns={cols} name="featureToggles" />
             </Tile>
             <FormFooter>
               <Button variant="primary" type="submit" disabled={disabled}>
